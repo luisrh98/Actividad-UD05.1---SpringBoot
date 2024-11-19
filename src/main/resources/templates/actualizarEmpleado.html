@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Empleado</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1>Editar Empleado</h1>
+
+    <!-- Formulario de edición -->
+    <form th:action="@{/empresa/editar/guardar}" method="post" class="form-horizontal" onsubmit="return confirm('¿Estás seguro de que deseas guardar los cambios?')">
+        <input type="hidden" name="dni" th:value="${empleado.dni}" /> <!-- Campo oculto para el DNI -->
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" th:value="${empleado.nombre}" />
+        </div>
+        <div class="form-group">
+            <label for="sexo">Sexo</label>
+            <input type="text" id="sexo" name="sexo" class="form-control" th:value="${empleado.sexo}" />
+        </div>
+        <div class="form-group">
+            <label for="categoria">Categoría</label>
+            <input type="number" id="categoria" name="categoria" class="form-control" th:value="${empleado.categoria}" min="1" max="10" title="La categoría debe estar entre 1 y 10" />
+        </div>
+        <div class="form-group">
+            <label for="anyos">Años de experiencia</label>
+            <input type="number" id="anyos" name="anyos" class="form-control" th:value="${empleado.anyos}" min="0" title="Los años de experiencia deben ser mayores que 0" />
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+    <!-- Botón para volver al índice -->
+    <div class="mt-4">
+        <a th:href="@{/}" class="btn btn-secondary">Volver al índice</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS y dependencias -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

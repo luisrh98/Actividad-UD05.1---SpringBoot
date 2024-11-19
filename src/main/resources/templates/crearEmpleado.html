@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Empleado</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Crear Empleado</h1>
+        
+        <!-- Formulario de creación de empleado -->
+        <form th:action="@{/empresa/crear}" th:object="${empleado}" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" placeholder="Ingrese el nombre" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" th:field="*{dni}" class="form-control" placeholder="Ingrese el DNI" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sexo">Sexo:</label>
+                <input type="text" id="sexo" th:field="*{sexo}" class="form-control" placeholder="Ingrese el sexo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoría:</label>
+                <input type="number" id="categoria" th:field="*{categoria}" class="form-control" placeholder="Ingrese la categoría" min="1" max="10" >
+            </div>
+
+            <div class="form-group">
+                <label for="anyos">Años de experiencia:</label>
+                <input type="number" id="anyos" th:field="*{anyos}" class="form-control" placeholder="Ingrese los años de experiencia" min="0" >
+            </div>
+
+            <button type="submit" class="btn btn-primary">Crear Empleado</button>
+        </form>
+        
+        <!-- Enlace para volver a la lista de empleados -->
+        <a th:href="@{/empresa/empleados}" class="btn btn-secondary mt-3">Volver a la lista</a>
+
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
