@@ -11,7 +11,7 @@
 	<div class="container mt-4">
 		<h2>Listado de Empleados</h2>
 		<div class="mb-3">
-			<a th:href="@{/empresa/crear}" class="btn btn-primary">Crear
+			<a th:href="@{/crear}" class="btn btn-primary">Crear
 				Nuevo Empleado</a>
 		</div>
 		<table class="table table-bordered">
@@ -35,14 +35,14 @@
 					<td th:text="${empleado.anyos}"></td>
 					<td>
 						<!-- Formulario para eliminar empleado, ocultando el DNI -->
-						<form th:action="@{/empresa/eliminar}" method="post"
+						<form th:action="@{/eliminar}" method="post"
 							style="display: inline;">
 							<input type="hidden" name="dni" th:value="${empleado.dni}" />
 							<!-- DNI del empleado oculto -->
 							<button type="submit" class="btn btn-danger btn-sm"
 								onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')">Eliminar</button>
 						</form> <!-- Formulario para editar empleado, ocultando el DNI -->
-						<form th:action="@{/empresa/editar}" method="post"
+						<form th:action="@{/editar}" method="post"
 							style="display: inline;">
 							<input type="hidden" name="dni" th:value="${empleado.dni}" />
 							<!-- DNI del empleado oculto -->

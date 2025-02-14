@@ -11,7 +11,7 @@
     <h1>Buscar Empleados</h1>
 
     <!-- Formulario de búsqueda -->
-    <form th:action="@{/empresa/buscar}" method="post" class="form-inline mb-4">
+    <form th:action="@{/buscar}" method="post" class="form-inline mb-4">
         <div class="form-group mr-2">
             <label for="nombre" class="sr-only">Nombre</label>
             <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" th:value="${param.nombre}" />
@@ -58,12 +58,12 @@
                 <td th:text="${empleado.anyos}"></td>
                 <td>
                     <!-- Formulario para eliminar empleado, ocultando el DNI -->
-                    <form th:action="@{/empresa/eliminar}" method="post" style="display:inline;">
+                    <form th:action="@{/eliminar}" method="post" style="display:inline;">
                         <input type="hidden" name="dni" th:value="${empleado.dni}" /> <!-- DNI del empleado oculto -->
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')">Eliminar</button>
                     </form>
                     <!-- Formulario para editar empleado, ocultando el DNI -->
-                    <form th:action="@{/empresa/editar}" method="post" style="display:inline;">
+                    <form th:action="@{/editar}" method="post" style="display:inline;">
                         <input type="hidden" name="dni" th:value="${empleado.dni}" /> <!-- DNI del empleado oculto -->
                         <button type="submit" class="btn btn-warning btn-sm">Editar</button>
                     </form>

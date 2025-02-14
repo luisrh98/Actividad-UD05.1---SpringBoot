@@ -10,7 +10,7 @@
         <h1>Crear Empleado</h1>
         
         <!-- Formulario de creación de empleado -->
-        <form th:action="@{/empresa/crear}" th:object="${empleado}" method="post">
+        <form th:action="@{/crear}" th:object="${empleado}" method="post">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" th:field="*{nombre}" class="form-control" placeholder="Ingrese el nombre" required>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Empleados</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1>Buscar Empleados</h1>
+
+    <!-- Formulario de búsqueda -->
+    <form th:action="@{/empresa/buscar}" method="post" class="form-inline mb-4">
+        <div class="form-group mr-2">
+            <label for="nombre" class="sr-only">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" th:value="${param.nombre}" />
+        </div>
+        <div class="form-group mr-2">
+            <label for="dni" class="sr-only">DNI</label>
+            <input type="text" id="dni" name="dni" class="form-control" placeholder="DNI" th:value="${param.dni}" />
+        </div>
+        <div class="form-group mr-2">
+            <label for="sexo" class="sr-only">Sexo</label>
+            <input type="text" id="sexo" name="sexo" class="form-control" placeholder="Sexo" th:value="${param.sexo}" />
+        </div>
+        <div class="form-group mr-2">
+            <label for="categoria" class="sr-only">Categoría</label>
+            <input type="number" id="categoria" name="categoria" class="form-control" placeholder="Categoría" th:value="${param.categoria}" min="1" max="10" title="La categoría debe estar entre 1 y 10" />
+        </div>
+        <div class="form-group mr-2">
+            <label for="anyos" class="sr-only">Años de experiencia</label>
+            <input type="number" id="anyos" name="anyos" class="form-control" placeholder="Años de experiencia" th:value="${param.anyos}" min="1" title="Los años de experiencia deben ser mayores que 0" />
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+    <!-- Tabla de resultados -->
+    <h2>Resultados de la Búsqueda</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Sexo</th>
+                <th>Categoría</th>
+                <th>Años de Experiencia</th>
+                <th>Acciones</th> <!-- Nueva columna de acciones -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Thymeleaf para iterar sobre la lista de empleados -->
+            <tr th:each="empleado : ${empleados}">
+                <td th:text="${empleado.nombre}"></td>
+                <td th:text="${empleado.dni}"></td>
+                <td th:text="${empleado.sexo}"></td>
+                <td th:text="${empleado.categoria}"></td>
+                <td th:text="${empleado.anyos}"></td>
+                <td>
+                    <!-- Formulario para eliminar empleado, ocultando el DNI -->
+                    <form th:action="@{/empresa/eliminar}" method="post" style="display:inline;">
+                        <input type="hidden" name="dni" th:value="${empleado.dni}" /> <!-- DNI del empleado oculto -->
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')">Eliminar</button>
+                    </form>
+                    <!-- Formulario para editar empleado, ocultando el DNI -->
+                    <form th:action="@{/empresa/editar}" method="post" style="display:inline;">
+                        <input type="hidden" name="dni" th:value="${empleado.dni}" /> <!-- DNI del empleado oculto -->
+                        <button type="submit" class="btn btn-warning btn-sm">Editar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS y dependencias -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

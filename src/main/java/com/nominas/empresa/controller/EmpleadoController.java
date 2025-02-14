@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/empresa")
+//@RequestMapping("/empresa")
 public class EmpleadoController {
 	
     @Autowired
@@ -59,7 +59,7 @@ public class EmpleadoController {
         // Agregar los resultados al modelo para que Thymeleaf los muestre
         redirectAttributes.addFlashAttribute("empleados", empleados);
 
-        return "redirect:/empresa/buscar"; // Redirige a la página con los resultados
+        return "redirect:/buscar"; // Redirige a la página con los resultados
     }
     
  //Bucar salarios por dni
@@ -88,7 +88,7 @@ public class EmpleadoController {
         }
 
         // Redirige a la página de resultados
-        return "redirect:/empresa/buscarSalario";
+        return "redirect:/buscarSalario";
     }
 
     @GetMapping("/buscarSalario")
@@ -111,7 +111,7 @@ public class EmpleadoController {
     public String crearEmpleado(@ModelAttribute Empleado empleado) {
         System.out.println("Empleado recibido: " + empleado.getNombre() + " " + empleado.getDni() + " " + empleado.getSexo() + " " + empleado.getCategoria()+ " " + empleado.getAnyos());
         empleadoService.crearEmpleado(empleado);
-        return "redirect:/empresa/empleados";
+        return "redirect:/empleados";
     }
     
     //Actualiza un empleado
@@ -132,7 +132,7 @@ public class EmpleadoController {
     public String editarEmpleado(@ModelAttribute Empleado empleado) {
         // Lógica para guardar el empleado editado
         empleadoService.crearEmpleado(empleado);
-        return "redirect:/empresa/empleados"; // Redirige a la lista de empleados
+        return "redirect:/empleados"; // Redirige a la lista de empleados
     }
 
 
@@ -147,7 +147,7 @@ public class EmpleadoController {
             // Lógica de eliminación del empleado
     	empleadoService.eliminarEmpleado(dni); // Llama al servicio para eliminar el empleado
 
-        return "redirect:/empresa/empleados"; // Redirige a la lista de empleados después de eliminar
+        return "redirect:/empleados"; // Redirige a la lista de empleados después de eliminar
       
      }
 

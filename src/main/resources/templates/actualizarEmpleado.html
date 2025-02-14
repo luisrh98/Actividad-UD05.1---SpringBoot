@@ -11,7 +11,7 @@
     <h1>Editar Empleado</h1>
 
     <!-- Formulario de edición -->
-    <form th:action="@{/empresa/editar/guardar}" method="post" class="form-horizontal" onsubmit="return confirm('¿Estás seguro de que deseas guardar los cambios?')">
+    <form th:action="@{/editar/guardar}" method="post" class="form-horizontal" onsubmit="return confirm('¿Estás seguro de que deseas guardar los cambios?')">
         <input type="hidden" name="dni" th:value="${empleado.dni}" /> <!-- Campo oculto para el DNI -->
         <div class="form-group">
             <label for="nombre">Nombre</label>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listado de Empleados</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-4">
+		<h2>Listado de Empleados</h2>
+		<div class="mb-3">
+			<a th:href="@{/empresa/crear}" class="btn btn-primary">Crear
+				Nuevo Empleado</a>
+		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>DNI</th>
+					<th>Nombre</th>
+					<th>Sexo</th>
+					<th>Categoría</th>
+					<th>Años de Experiencia</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Iterar sobre la lista de empleados -->
+				<tr th:each="empleado : ${empleados}">
+					<td th:text="${empleado.dni}"></td>
+					<td th:text="${empleado.nombre}"></td>
+					<td th:text="${empleado.sexo}"></td>
+					<td th:text="${empleado.categoria}"></td>
+					<td th:text="${empleado.anyos}"></td>
+					<td>
+						<!-- Formulario para eliminar empleado, ocultando el DNI -->
+						<form th:action="@{/empresa/eliminar}" method="post"
+							style="display: inline;">
+							<input type="hidden" name="dni" th:value="${empleado.dni}" />
+							<!-- DNI del empleado oculto -->
+							<button type="submit" class="btn btn-danger btn-sm"
+								onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')">Eliminar</button>
+						</form> <!-- Formulario para editar empleado, ocultando el DNI -->
+						<form th:action="@{/empresa/editar}" method="post"
+							style="display: inline;">
+							<input type="hidden" name="dni" th:value="${empleado.dni}" />
+							<!-- DNI del empleado oculto -->
+							<button type="submit" class="btn btn-warning btn-sm">Editar</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- Botón para volver al índice -->
+		<div class="mt-4">
+			<a th:href="@{/}" class="btn btn-secondary">Volver al índice</a>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

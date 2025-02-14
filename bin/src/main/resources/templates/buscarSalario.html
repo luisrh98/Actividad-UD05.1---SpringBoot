@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buscar Salario</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-4">
+		<h2>Buscar Salario por DNI</h2>
+		<form th:action="@{/empresa/buscarSalario}" method="post" class="mt-4">
+			<div class="mb-3">
+				<label for="dni" class="form-label">DNI del empleado</label> <input
+					type="text" id="dni" name="dni" class="form-control"
+					placeholder="Ingrese el DNI" required />
+			</div>
+			<button type="submit" class="btn btn-primary">Buscar</button>
+		</form>
+
+		<div th:if="${sueldo != null}">
+			<h3
+				th:utext="'Nombre: ' + ${nombre} + ' | DNI: ' + ${dniEmpleado} + ' | Salario: ' + ${sueldo}"></h3>
+		</div>
+
+
+		<div th:if="${sueldo == null}">
+			<h3 class="mt-4">Empleado no encontrado o no tiene salario
+				registrado.</h3>
+		</div>
+
+		<!-- Botón para volver al índice -->
+		<div class="mt-4">
+			<a th:href="@{/}" class="btn btn-secondary">Volver al índice</a>
+		</div>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
